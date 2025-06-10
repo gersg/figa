@@ -80,6 +80,54 @@
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+
+        /* Estilo para o carrossel de background */
+        .carousel-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; /* Garante que as imagens não transbordem */
+        }
+
+        .carousel-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out; /* Transição mais longa para fundo */
+            z-index: 1; /* Abaixo do conteúdo principal */
+        }
+
+        .carousel-slide.active {
+            opacity: 1;
+            z-index: 2; /* Ativo fica um pouco acima, mas ainda abaixo do conteúdo (z-index: 10) */
+        }
+
+        /* Overlay para o conteúdo principal ser mais legível */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Escurece o background para o texto se destacar */
+            z-index: 3; /* Acima das imagens do carrossel, abaixo do conteúdo */
+        }
+        
+        /* Ajuste para o texto do hero ficar em branco para melhor contraste */
+        .hero-content h1, .hero-content p {
+            color: white; /* Cor branca para o texto principal do hero */
+        }
+        .hero-content .text-figa-primary {
+            color: white; /* Garante que o H1 específico também seja branco */
+        }
+
     </style>
 </head>
 <body class="bg-figa-background text-figa-secondary leading-relaxed antialiased">
@@ -89,7 +137,7 @@
         <nav class="container mx-auto flex flex-wrap justify-between items-center">
             <!-- Logo (Texto Figa e imagem) -->
             <a href="#" class="flex items-center space-x-2">
-                <img id="logoImage" src="figa.jpeg" alt="Logo Figa Bar e Cultura" class="w-20 h-20 rounded-md shadow-md border-2 border-figa-primary">
+                <img id="logoImage" src="figa.jpeg" alt="Logo Figa Bar e Cultura" class="w-20 h-20 rounded-xl shadow-md border-2 border-figa-primary">
                 <div class="flex flex-col">
                     <span class="text-4xl md:text-5xl font-extrabold text-figa-primary tracking-wide">FIGA</span>
                     <span class="text-xs md:text-sm text-figa-secondary -mt-1 md:-mt-2">VILA DE PONTA NEGRA</span>
@@ -108,11 +156,24 @@
     <main class="pt-24 md:pt-28"> <!-- Padding top para compensar o header fixo -->
         <!-- Seção Hero -->
         <section class="relative min-h-[calc(100vh-6rem)] flex items-center justify-center text-center p-4">
-            <div class="relative z-10 max-w-4xl mx-auto">
-                <h1 class="text-5xl md:text-7xl font-bold text-figa-primary mb-6 hero-title">
+            <!-- Carrossel de Background -->
+            <div class="carousel-background">
+                <div class="carousel-slide" style="background-image: url('figa.jpeg');"></div>
+                <div class="carousel-slide" style="background-image: url('figa2.jpeg');"></div>
+                <div class="carousel-slide" style="background-image: url('figa3.jpeg');"></div>
+                <div class="carousel-slide" style="background-image: url('figa4.jpeg');"></div>
+                <div class="carousel-slide" style="background-image: url('agusto.jpeg');"></div>
+            </div>
+
+            <!-- Overlay para escurecer o background e melhorar o contraste do texto -->
+            <div class="hero-overlay"></div>
+
+            <!-- Conteúdo Principal do Hero -->
+            <div class="relative z-10 max-w-4xl mx-auto hero-content">
+                <h1 class="text-5xl md:text-7xl font-bold text-white mb-6 hero-title">
                     É bar, é encontro, é cultura.
                 </h1>
-                <p class="text-lg md:text-xl text-figa-secondary mb-10 leading-relaxed hero-description">
+                <p class="text-lg md:text-xl text-white mb-10 leading-relaxed hero-description">
                     Localizado na Vila de Ponta Negra, em Natal (RN), o Figa nasce como um espaço pra celebrar o que a gente tem de melhor: comida de boteco, cerveja gelada e muita arte pulsando ao redor.
                 </p>
                 <a href="#sobre" class="inline-block bg-figa-primary text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-figa-accent transition duration-300 transform hover:scale-105 hero-button">
@@ -171,17 +232,17 @@
                 </p>
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
-                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Cerveja" alt="Cerveja Gelada" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <img src="cervagelada.jpeg" alt="Cerveja Gelada" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
                         <h3 class="text-2xl font-semibold text-figa-primary mb-2">CERVEJA GELADA</h3>
                         <p class="text-figa-secondary text-center">Sempre no ponto, para o brinde perfeito.</p>
                     </div>
                     <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
-                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Drinks" alt="Drinks Variados" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <img src="drinks.jpeg" alt="Drinks Variados" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
                         <h3 class="text-2xl font-semibold text-figa-primary mb-2">DRINKS</h3>
                         <p class="text-figa-secondary text-center">Clássicos e criações para todos os paladares.</p>
                     </div>
                     <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
-                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Comida" alt="Comida de Boteco" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <img src="Comida-di-Boteco-2025.jpg" alt="Comida de Boteco" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
                         <h3 class="text-2xl font-semibold text-figa-primary mb-2">COMIDA DE BOTECO</h3>
                         <p class="text-figa-secondary text-center">Petiscos com afeto, sabor e alma generosa.</p>
                     </div>
@@ -199,11 +260,27 @@
                 <a href="https://www.instagram.com/figa.bar/" target="_blank" class="bg-white text-figa-primary text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
                     Nosso Instagram
                 </a>
-                <a href="mailto:contato@figabarcultura.com" class="bg-white text-figa-primary text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                <a href="https://api.whatsapp.com/send/?phone=%2B5561999881907" class="bg-white text-figa-primary text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
                     Fale Conosco
                 </a>
             </div>
-            <p class="text-sm mt-8">R. Ver. Manoel Coringa de Lemos, 633 - Vila de Ponta Negra, Natal - RN, 59090-190</p>
+             <!-- Google Maps Integration - Static Map Image -->
+            <div class="mt-8 flex flex-col items-center">
+                <h3 class="text-lg font-semibold mb-4">Onde Estamos:</h3>
+                <a href="https://www.google.com/maps/search/?api=1&query=Rua+Vereador+Manoel+Coringa+de+Lemos,+633+-+Vila+de+Ponta+Negra,+Natal+-+RN,+59090-190"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="block w-full max-w-md mx-auto rounded-lg shadow-md  transform transition duration-300 hover:scale-102">                                        
+                                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3968.786575802211!2d-35.1679923!3d-5.8855856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7b2f928ffb00b59%3A0xad4046b8e0d6023e!2sR.%20Ver.%20Manoel%20Coringa%20de%20Lemos%2C%20633%20-%20Vila%20de%20Ponta%20Negra%2C%20Natal%20-%20RN%2C%2059090-190!5e0!3m2!1spt-BR!2sbr!4v1749575133456!5m2!1spt-BR!2sbr"
+                                        width="100%"
+                                        height="100%"
+                                        style="border:0;"
+                                        allowFullScreen
+                                        loading="lazy"
+                                        referrerPolicy="no-referrer-when-downgrade"
+                                    ></iframe>
+                <p class="text-sm mt-4">R. Ver. Manoel Coringa de Lemos, 633 - Vila de Ponta Negra, Natal - RN, 59090-190</p>
+            </div>
         </section>
 
     </main>
@@ -215,7 +292,7 @@
     </footer>
 
     <script>
-        
+     
 
         // Script para animações de fade-in ao rolar
         document.addEventListener("DOMContentLoaded", function() {
@@ -233,6 +310,31 @@
             animateElements.forEach(element => {
                 observer.observe(element);
             });
+
+            // Lógica do Carrossel de Background
+            const carouselSlides = document.querySelectorAll('.carousel-slide');
+            let currentSlide = 0;
+
+            function showSlide(index) {
+                carouselSlides.forEach((slide, i) => {
+                    slide.classList.remove('active');
+                    // Reset z-index of inactive slides to a lower value if necessary
+                    slide.style.zIndex = 1;
+                });
+                carouselSlides[index].classList.add('active');
+                carouselSlides[index].style.zIndex = 2; // Set z-index for active slide
+            }
+
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % carouselSlides.length;
+                showSlide(currentSlide);
+            }
+
+            // Mostra a primeira imagem imediatamente
+            showSlide(currentSlide);
+
+            // Inicia o carrossel a cada 5 segundos (5000ms)
+            setInterval(nextSlide, 3500);
         });
     </script>
 </body>
