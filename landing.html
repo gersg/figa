@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figa Bar & Cultura</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter para tipografia moderna -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Define cores customizadas Tailwind baseadas na paleta da imagem */
+        :root {
+            --color-figa-background: #DDC7A1; /* Bege claro/areia do fundo */
+            --color-figa-primary: #5B6E4A;    /* Verde oliva escuro do texto "FIGA" */
+            --color-figa-secondary: #4D4D4D;  /* Cinza escuro/marrom para textos menores */
+            --color-figa-accent: #99B2C0;     /* Azul acinzentado suave da ilustração da mão */
+        }
+
+        /* Classes Tailwind customizadas usando as variáveis de cor */
+        .bg-figa-background { background-color: var(--color-figa-background); }
+        .text-figa-primary { color: var(--color-figa-primary); }
+        .text-figa-secondary { color: var(--color-figa-secondary); }
+        .border-figa-primary { border-color: var(--color-figa-primary); }
+        .bg-figa-primary { background-color: var(--color-figa-primary); }
+        .bg-figa-accent { background-color: var(--color-figa-accent); }
+
+        /* Estilo global da fonte */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Rolagem suave para links de âncora */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animações CSS para elementos aparecerem na tela */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .animate-fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Animação específica para o H1 e P do Hero */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-title {
+            animation: fadeInDown 1s ease-out forwards;
+            opacity: 0; /* Começa invisível */
+        }
+
+        .hero-description {
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.3s; /* Atraso para aparecer depois do título */
+            opacity: 0; /* Começa invisível */
+        }
+
+        .hero-button {
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 0.6s; /* Atraso para aparecer depois da descrição */
+            opacity: 0; /* Começa invisível */
+        }
+
+        /* Efeito de hover para cards e botões */
+        .card-hover:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body class="bg-figa-background text-figa-secondary leading-relaxed antialiased">
+
+    <!-- Seção do Cabeçalho -->
+    <header class="w-full py-4 px-4 md:px-8 bg-figa-background shadow-md fixed top-0 left-0 z-50">
+        <nav class="container mx-auto flex flex-wrap justify-between items-center">
+            <!-- Logo (Texto Figa e imagem) -->
+            <a href="#" class="flex items-center space-x-2">
+                <img id="logoImage" src="figa.jpeg" alt="Logo Figa Bar e Cultura" class="w-20 h-20 rounded-md shadow-md border-2 border-figa-primary">
+                <div class="flex flex-col">
+                    <span class="text-4xl md:text-5xl font-extrabold text-figa-primary tracking-wide">FIGA</span>
+                    <span class="text-xs md:text-sm text-figa-secondary -mt-1 md:-mt-2">VILA DE PONTA NEGRA</span>
+                </div>
+            </a>
+            <!-- Links de Navegação -->
+            <div class="mt-4 md:mt-0 flex flex-wrap justify-center md:space-x-8 space-x-4">
+                <a href="#sobre" class="text-figa-secondary hover:text-figa-primary font-medium transition duration-300">Sobre Nós</a>
+                <a href="#cultura" class="text-figa-secondary hover:text-figa-primary font-medium transition duration-300">Cultura</a>
+                <a href="#gastronomia" class="text-figa-secondary hover:text-figa-primary font-medium transition duration-300">Gastronomia</a>
+                <a href="#contato" class="text-figa-secondary hover:text-figa-primary font-medium transition duration-300">Contato</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-24 md:pt-28"> <!-- Padding top para compensar o header fixo -->
+        <!-- Seção Hero -->
+        <section class="relative min-h-[calc(100vh-6rem)] flex items-center justify-center text-center p-4">
+            <div class="relative z-10 max-w-4xl mx-auto">
+                <h1 class="text-5xl md:text-7xl font-bold text-figa-primary mb-6 hero-title">
+                    É bar, é encontro, é cultura.
+                </h1>
+                <p class="text-lg md:text-xl text-figa-secondary mb-10 leading-relaxed hero-description">
+                    Localizado na Vila de Ponta Negra, em Natal (RN), o Figa nasce como um espaço pra celebrar o que a gente tem de melhor: comida de boteco, cerveja gelada e muita arte pulsando ao redor.
+                </p>
+                <a href="#sobre" class="inline-block bg-figa-primary text-white text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-figa-accent transition duration-300 transform hover:scale-105 hero-button">
+                    Saiba Mais
+                </a>
+            </div>
+        </section>
+
+        <!-- Seção Sobre Nós -->
+        <section id="sobre" class="py-16 px-4 md:px-8 bg-figa-background animate-fade-in">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-figa-primary mb-8">Mais do que um Bar, um Encontro.</h2>
+                <p class="text-lg md:text-xl text-figa-secondary leading-relaxed mb-8">
+                    Mais do que um bar, o Figa quer ser um ponto de encontro — um lugar onde as pessoas se reúnem pra conversar, brindar, ouvir um som, viver experiências culturais e se sentir em casa. Nossa missão é criar um ambiente onde a conexão humana e a celebração da vida sejam a essência.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+                    <div class="p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <h3 class="text-2xl font-semibold text-figa-primary mb-4">🍻 Boas Conversas</h3>
+                        <p class="text-figa-secondary">Um lugar para se reconectar, compartilhar histórias e criar novas memórias com amigos e familiares.</p>
+                    </div>
+                    <div class="p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <h3 class="text-2xl font-semibold text-figa-primary mb-4">🥂 Brindes Memoráveis</h3>
+                        <p class="text-figa-secondary">Celebre a vida e os bons momentos com a nossa seleção de cervejas geladas e drinks especiais.</p>
+                    </div>
+                    <div class="p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <h3 class="2xl font-semibold text-figa-primary mb-4">🎶 Som e Arte</h3>
+                        <p class="text-figa-secondary">De shows intimistas a saraus, a música e a arte são a trilha sonora dos seus melhores momentos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Cultura -->
+        <section id="cultura" class="py-16 px-4 md:px-8 bg-figa-background animate-fade-in">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-figa-primary mb-8">Cultura que Pulsa.</h2>
+                <p class="text-lg md:text-xl text-figa-secondary leading-relaxed mb-12">
+                    No Figa, a arte é viva e acessível. Com uma programação diversa e em constante renovação, vamos receber shows intimistas que tocam a alma, saraus que inspiram, feiras criativas para valorizar o talento local, rodas de conversa que enriquecem o pensamento, e tudo mais que faz a cultura girar e evoluir.
+                </p>
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-6">
+                    <span class="text-base md:text-xl font-semibold text-figa-primary py-2 px-4 border-2 border-figa-primary rounded-full hover:bg-figa-accent hover:text-white transition duration-300 cursor-default">Shows Intimistas</span>
+                    <span class="text-base md:text-xl font-semibold text-figa-primary py-2 px-4 border-2 border-figa-primary rounded-full hover:bg-figa-accent hover:text-white transition duration-300 cursor-default">Saraus</span>
+                    <span class="text-base md:text-xl font-semibold text-figa-primary py-2 px-4 border-2 border-figa-primary rounded-full hover:bg-figa-accent hover:text-white transition duration-300 cursor-default">Feiras Criativas</span>
+                    <span class="text-base md:text-xl font-semibold text-figa-primary py-2 px-4 border-2 border-figa-primary rounded-full hover:bg-figa-accent hover:text-white transition duration-300 cursor-default">Rodas de Conversa</span>
+                    <span class="text-base md:text-xl font-semibold text-figa-primary py-2 px-4 border-2 border-figa-primary rounded-full hover:bg-figa-accent hover:text-white transition duration-300 cursor-default">E muito mais!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Gastronomia -->
+        <section id="gastronomia" class="py-16 px-4 md:px-8 bg-figa-background animate-fade-in">
+            <div class="container mx-auto max-w-4xl text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-figa-primary mb-8">Sabor de Boteco com Alma Generosa.</h2>
+                <p class="text-lg md:text-xl text-figa-secondary leading-relaxed mb-12">
+                    E na cozinha? Um cardápio cheio de afeto e sabor, feito com ingredientes simples e alma generosa — daquele jeitinho que só boteco bom tem. Venha experimentar o melhor da culinária de boteco, preparada com carinho e paixão, perfeita para acompanhar sua cerveja gelada ou seu drink favorito.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Cerveja" alt="Cerveja Gelada" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <h3 class="text-2xl font-semibold text-figa-primary mb-2">CERVEJA GELADA</h3>
+                        <p class="text-figa-secondary text-center">Sempre no ponto, para o brinde perfeito.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Drinks" alt="Drinks Variados" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <h3 class="text-2xl font-semibold text-figa-primary mb-2">DRINKS</h3>
+                        <p class="text-figa-secondary text-center">Clássicos e criações para todos os paladares.</p>
+                    </div>
+                    <div class="flex flex-col items-center p-6 rounded-lg shadow-md bg-white bg-opacity-70 transform transition duration-300 card-hover">
+                        <img src="https://placehold.co/100x100/99B2C0/5B6E4A?text=Comida" alt="Comida de Boteco" class="w-24 h-24 mb-4 rounded-full object-cover border-2 border-figa-primary p-1">
+                        <h3 class="text-2xl font-semibold text-figa-primary mb-2">COMIDA DE BOTECO</h3>
+                        <p class="text-figa-secondary text-center">Petiscos com afeto, sabor e alma generosa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção Chamada para Ação / Contato -->
+        <section id="contato" class="py-16 px-4 md:px-8 bg-figa-primary text-white text-center rounded-lg shadow-xl mx-4 md:mx-auto max-w-5xl my-12 animate-fade-in">
+            <h2 class="text-4xl md:text-5xl font-bold mb-8">Venha Viver o Figa!</h2>
+            <p class="text-lg md:text-xl leading-relaxed mb-10">
+                O Figa é feito por gente e pra gente. Um espaço independente, aberto à diversidade, onde todo mundo é bem-vindo. Chegue com sede, com fome, com vontade de viver e faça parte da nossa história.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="https://www.instagram.com/figa.bar/" target="_blank" class="bg-white text-figa-primary text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Nosso Instagram
+                </a>
+                <a href="mailto:contato@figabarcultura.com" class="bg-white text-figa-primary text-lg md:text-xl font-semibold py-3 px-8 rounded-full shadow-lg hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                    Fale Conosco
+                </a>
+            </div>
+            <p class="text-sm mt-8">R. Ver. Manoel Coringa de Lemos, 633 - Vila de Ponta Negra, Natal - RN, 59090-190</p>
+        </section>
+
+    </main>
+
+    <!-- Seção do Rodapé -->
+    <footer class="w-full py-8 px-4 md:px-8 bg-figa-background text-center text-figa-secondary text-sm">
+        <p>&copy; 2025 Figa Bar & Cultura. Todos os direitos reservados.</p>
+        <p class="mt-2">Feito com 🧡 e muita cultura.</p>
+    </footer>
+
+    <script>
+        
+
+        // Script para animações de fade-in ao rolar
+        document.addEventListener("DOMContentLoaded", function() {
+            const animateElements = document.querySelectorAll(".animate-fade-in");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target); // Deixa de observar após a animação
+                    }
+                });
+            }, { threshold: 0.1 }); // Quando 10% do elemento estiver visível
+
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
